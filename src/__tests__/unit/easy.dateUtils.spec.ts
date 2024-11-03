@@ -63,8 +63,8 @@ describe('getWeekDates', () => {
     ]);
   });
 
-  it('주의 시작(월요일)에 대해 올바른 주의 날짜들을 반환한다', () => {
-    const result = getWeekDates(new Date('2024-11-04'));
+  it('주의 시작(일요일)에 대해 올바른 주의 날짜들을 반환한다', () => {
+    const result = getWeekDates(new Date('2024-11-03'));
 
     expect(result).toEqual([
       new Date('2024-11-03'),
@@ -77,8 +77,8 @@ describe('getWeekDates', () => {
     ]);
   });
 
-  it('주의 끝(일요일)에 대해 올바른 주의 날짜들을 반환한다', () => {
-    const result = getWeekDates(new Date('2024-11-03'));
+  it('주의 끝(토요일)에 대해 올바른 주의 날짜들을 반환한다', () => {
+    const result = getWeekDates(new Date('2024-11-09'));
 
     expect(result).toEqual([
       new Date('2024-11-03'),
