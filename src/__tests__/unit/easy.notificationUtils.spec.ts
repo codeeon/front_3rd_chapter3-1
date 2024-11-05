@@ -80,7 +80,20 @@ describe('getUpcomingEvents', () => {
 
     const result = getUpcomingEvents(eventList, new Date('2024-06-30'), []);
 
-    expect(result.map((event) => event.id)).toEqual(['6']);
+    expect(result).toEqual([
+      {
+        id: '6',
+        date: '2024-06-30',
+        title: '이벤트 6',
+        startTime: '09:00:30',
+        endTime: '10:00',
+        description: '이벤트 6 description',
+        location: '이벤트 6 location',
+        category: '이벤트 6 category',
+        repeat: { type: 'none', interval: 1 },
+        notificationTime: 1,
+      },
+    ]);
   });
 
   it('이미 알림이 간 이벤트는 제외한다', () => {
@@ -173,7 +186,20 @@ describe('getUpcomingEvents', () => {
 
     const result = getUpcomingEvents(eventList, new Date('2024-06-30'), ['6']);
 
-    expect(result.map((event) => event.id)).toEqual(['7']);
+    expect(result).toEqual([
+      {
+        id: '7',
+        date: '2024-06-30',
+        title: '이벤트 7',
+        startTime: '09:00:30',
+        endTime: '10:00',
+        description: '이벤트 7 description',
+        location: '이벤트 7 location',
+        category: '이벤트 7 category',
+        repeat: { type: 'none', interval: 1 },
+        notificationTime: 1,
+      },
+    ]);
   });
 
   it('알림 시간이 아직 도래하지 않은 이벤트는 반환하지 않는다', () => {
@@ -194,7 +220,7 @@ describe('getUpcomingEvents', () => {
 
     const result = getUpcomingEvents(eventList, new Date('2024-06-30'), []);
 
-    expect(result.map((event) => event.id)).toEqual([]);
+    expect(result).toEqual([]);
   });
 
   it('알림 시간이 지난 이벤트는 반환하지 않는다', () => {
@@ -215,7 +241,7 @@ describe('getUpcomingEvents', () => {
 
     const result = getUpcomingEvents(eventList, new Date('2024-06-30'), []);
 
-    expect(result.map((event) => event.id)).toEqual([]);
+    expect(result).toEqual([]);
   });
 });
 

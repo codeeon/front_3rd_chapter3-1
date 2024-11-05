@@ -217,7 +217,32 @@ describe('getEventsForDay', () => {
 
     const result = getEventsForDay(eventList, 1);
 
-    expect(result).toEqual([eventList[0], eventList[2]]);
+    expect(result).toEqual([
+      {
+        id: '1',
+        date: '2024-11-01',
+        title: 'event1',
+        startTime: '09:00',
+        endTime: '10:00',
+        description: 'event1 description',
+        location: 'event1 location',
+        category: 'event1 category',
+        repeat: { type: 'none', interval: 1 },
+        notificationTime: 1,
+      },
+      {
+        id: '3',
+        date: '2024-11-01',
+        title: 'event3',
+        startTime: '11:00',
+        endTime: '12:00',
+        description: 'event3 description',
+        location: 'event3 location',
+        category: 'event3 category',
+        repeat: { type: 'none', interval: 1 },
+        notificationTime: 1,
+      },
+    ]);
   });
 
   it('해당 날짜에 이벤트가 없을 경우 빈 배열을 반환한다', () => {
