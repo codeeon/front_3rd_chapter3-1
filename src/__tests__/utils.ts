@@ -27,3 +27,7 @@ export const createNewId = <T extends HasIdType>(list: T[]) => {
 export const sortEventList = (events: Event[]) => {
   return events.sort((a, b) => Number(a.id) - Number(b.id));
 };
+
+export const deleteData = <T extends HasIdType>(list: T[], id: string) => {
+  return list.filter((item) => item.id !== id);
+};

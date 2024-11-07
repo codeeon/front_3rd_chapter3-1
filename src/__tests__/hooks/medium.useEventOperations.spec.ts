@@ -11,7 +11,7 @@ import {
 import { useEventOperations } from '../../hooks/useEventOperations.ts';
 import { server } from '../../setupTests.ts';
 import type { Event } from '../../types.ts';
-import { createNewId, sortEventList } from '../utils.ts';
+import { createNewId, deleteData, sortEventList } from '../utils.ts';
 
 vi.mock('@chakra-ui/react', () => ({
   ...vi.importActual('@chakra-ui/react'),
@@ -108,7 +108,7 @@ describe('useEventOperations', () => {
       ...mockUpdatedEventInfo,
     };
 
-    const restEvents = initialEvents.filter((event) => event.id !== targetEventId);
+    const restEvents = deleteData(initialEvents, targetEventId);
 
     await act(async () => {
       await result.current.saveEvent({ ...mockUpdatedEvent });
@@ -130,13 +130,14 @@ describe('useEventOperations', () => {
     });
 
     const initialEvents = result.current.events;
+    const testId = '1';
 
     await act(async () => {
-      await result.current.deleteEvent('1');
+      await result.current.deleteEvent(testId);
     });
 
     await waitFor(() => {
-      expect(result.current.events).toEqual(initialEvents.filter((event) => event.id !== '1'));
+      expect(result.current.events).toEqual(deleteData(initialEvents, testId));
     });
   });
 
