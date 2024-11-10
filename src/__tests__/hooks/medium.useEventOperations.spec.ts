@@ -21,9 +21,6 @@ vi.mock('@chakra-ui/react', () => ({
 describe('useEventOperations', () => {
   beforeEach(() => {
     server.resetHandlers();
-    setupMockHandlerCreation();
-    setupMockHandlerUpdating();
-    setupMockHandlerDeletion();
   });
 
   it('저장되어있는 초기 이벤트 데이터를 적절하게 불러온다', async () => {

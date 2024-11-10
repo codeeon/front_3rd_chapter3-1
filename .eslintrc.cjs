@@ -54,6 +54,7 @@ module.exports = {
       extends: ['plugin:vitest/recommended'],
       rules: {
         'vitest/expect-expect': 'off',
+        'vitest/no-commented-out-tests': 'warn',
       },
       globals: {
         globalThis: true,
